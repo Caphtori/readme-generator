@@ -40,11 +40,19 @@ const tests = new Question("What tests can I run on this application to ensure i
 const github = new Question("What is the link to your github profile?", "github");
 const email = new Question("What is your email address?", "email");
 
+async function questioner(){
+    inquirer.prompt(
+        questions
+    ).then((data)=>console.log(data))
+}
+
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+    questioner()
+}
 
 // Function call to initialize app
 init();
