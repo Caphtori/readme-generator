@@ -21,7 +21,6 @@ function generateMarkdown(data) {
   const badge = renderLicenseBadge(data.license);
   const link = renderLicenseLink(data.license);
 
-
   return `# ${data.title}
   ## Description
   ${data.description}
