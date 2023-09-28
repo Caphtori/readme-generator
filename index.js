@@ -75,17 +75,16 @@ async function questioner(){
 }
 
 // TODO: Create a function to write README file
-function writeToFile(data) {
-    // console.log(data)
-    // const readmeText = generateMarkdown(data);
-    fs.writeFile("README.md", generateMarkdown(data, License.instances)).then((err) =>
+function writeToFile(filename, data) {
+    fs.writeFile(filename, generateMarkdown(data, License.instances)).then((err) =>
     err ? console.log(err) : console.log('Success!'));
 };
 
 // TODO: Create a function to initialize app
 async function init() {
     const result = await questioner();
-    writeToFile(result);
+    const readmeFile = `${result.title.toLowerCase().split(' ').join('')}README.md`
+    writeToFile(readmeFile, result);
 }
 
 // Function call to initialize app

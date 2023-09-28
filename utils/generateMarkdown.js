@@ -73,7 +73,7 @@ ${data.contributing}
 ${data.tests}
 
 ## Questions
-For questions, please contact me at:
+For additional questions, please contact me at:
 \ngithub: ${data.github}
 \nemail: ${data.email}
 `;
