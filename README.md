@@ -1,17 +1,17 @@
-#readme-generator
+# readme-generator
 
-##Description
+## Description
 A command line application that dynamically generates readme files.
 
-##Installation
+## Installation
 Download the contents of this repository.  Install node, if needed.
 
-##Usage
+## Usage
 Use the terminal to navigate to the project folder.  Enter the command: node index.js
 
-##Screenshots
+## Screenshots
 ![Terminal](./assets/images/terminal_screenshot.png)
 ![File Example](./assets/images/generated_readme_screenshot.png)
 
-##Video
+## Video
 Coming soon.
