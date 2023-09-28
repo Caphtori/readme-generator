@@ -13,22 +13,25 @@ A command line application that dynamically generates a readme file.
 - [Questions](#questions)
 
 ## Instsallation
-Download the repo file.  If needed, install node.
+Download the contents of the repo.  Install node if needed.
 
 ## Usage
-Using the terminal, navigate into the project folder.  Enter the command: node index.js
+Using the terminal, navigate to the project folder. Enter the commend: node index.js
 
 ## License
 readme-generator is covered under the MIT license.
+
 For more information, please visit the MIT [chooselicense page](https://choosealicense.com/licenses/mit/).
 
 ## Contributing
-No contributions will be accepted at this time.
+Additional contributions will not be accepted at this time.
 
 ## Tests
-There are no tests to run at this time.
+No tests are available for this project.
 
 ## Questions
 For questions, please contact me at:
+
 github: placeholder
+
 email: placeholder

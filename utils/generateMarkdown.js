@@ -38,7 +38,7 @@ function generateMarkdown(data, licenseArray) {
       return "None.";
     } else{
       return `${data.title} is covered under the ${license().label} license.
-For more information, please visit the ${license().label} [chooselicense page](${license().link}).`
+\nFor more information, please visit the ${license().label} [chooselicense page](${license().link}).`
 
     }
   }
@@ -74,8 +74,8 @@ ${data.tests}
 
 ## Questions
 For questions, please contact me at:
-github: ${data.github}
-email: ${data.email}
+\ngithub: ${data.github}
+\nemail: ${data.email}
 `;
 }
 
