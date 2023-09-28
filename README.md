@@ -14,4 +14,4 @@ Use the terminal to navigate to the project folder.  Enter the command: node ind
 ![File Example](./assets/images/generated_readme_screenshot.png)
 
 ## Video
-Coming soon.
+[Usage Video](https://drive.google.com/file/d/1mJP0NyKFxZOwwa3KNa0EdWVD5LXlj0TO/view)
