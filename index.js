@@ -5,6 +5,7 @@ const generateMarkdown = require("./utils/generateMarkdown.js");
 
 // TODO: Create an array of questions for user input
 const questions = [];
+const licenseQuestions = [];
 const licenses = [];
 class Question{
     constructor(message, name){
@@ -18,6 +19,17 @@ class Input extends Question{
     constructor(message, name){
         super(message, name);
         questions.push({
+            type: "input",
+            message: this.message,
+            name: this.name
+        })
+    }
+}
+
+class LicenseInput extends Question{
+    constructor(message, name){
+        super(message, name);
+        licenseQuestions.push({
             type: "input",
             message: this.message,
             name: this.name
@@ -50,7 +62,7 @@ class License{
 };
 
 const mit = new License("MIT", "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)", "https://choosealicense.com/licenses/mit/");
-const ISC = new License("ISC", "[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)", "https://choosealicense.com/licenses/isc/");
+const isc = new License("ISC", "[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)", "https://choosealicense.com/licenses/isc/");
 const gnu2 = new License("GNU GPLv2", "[![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)", "https://choosealicense.com/licenses/gpl-2.0/");
 const gnu3 = new License("GNU GPLv3", "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)", "https://choosealicense.com/licenses/gpl-3.0/");
 const apache = new License("Apache 2.0", "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)", "https://choosealicense.com/licenses/apache-2.0/");
@@ -67,21 +79,32 @@ const tests = new Input("What tests can I run on this application to ensure it i
 const github = new Input("What is the link to your github profile?", "github");
 const email = new Input("What is your email address?", "email");
 
-console.log(questions)
-console.log(licenses)
+const fullName = new LicenseInput("What is the full name of the owner of this project?", "fullName");
+const year = new LicenseInput("What is the copyright year of this project?", "year");
 
-async function questioner(){
-    inquirer.prompt(
-        questions
-    ).then((data)=>console.log(data))
+async function questioner(questionArray){
+    const result = await inquirer.prompt(
+        questionArray
+    ).then((data)=>data)
+    return result
 }
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(data) {
+    // console.log(data)
+    // const readmeText = generateMarkdown(data);
+    fs.writeFile("README.md", generateMarkdown(data, License.instances)).then((err) =>
+    err ? console.log(err) : console.log('Success!'));
+};
 
 // TODO: Create a function to initialize app
-function init() {
-    questioner()
+async function init() {
+    let licenseData = "";
+    const result = await questioner(questions);
+    if (result.license !== "None"){
+        licenseData= await questioner(licenseQuestions);
+    };
+    writeToFile(result);
 }
 
 // Function call to initialize app
