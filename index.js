@@ -5,7 +5,6 @@ const generateMarkdown = require("./utils/generateMarkdown.js");
 
 // TODO: Create an array of questions for user input
 const questions = [];
-const licenseQuestions = [];
 const licenses = [];
 class Question{
     constructor(message, name){
@@ -19,17 +18,6 @@ class Input extends Question{
     constructor(message, name){
         super(message, name);
         questions.push({
-            type: "input",
-            message: this.message,
-            name: this.name
-        })
-    }
-}
-
-class LicenseInput extends Question{
-    constructor(message, name){
-        super(message, name);
-        licenseQuestions.push({
             type: "input",
             message: this.message,
             name: this.name
@@ -79,14 +67,11 @@ const tests = new Input("What tests can I run on this application to ensure it i
 const github = new Input("What is the link to your github profile?", "github");
 const email = new Input("What is your email address?", "email");
 
-const fullName = new LicenseInput("What is the full name of the owner of this project?", "fullName");
-const year = new LicenseInput("What is the copyright year of this project?", "year");
-
-async function questioner(questionArray){
+async function questioner(){
     const result = await inquirer.prompt(
-        questionArray
+        questions
     ).then((data)=>data)
-    return result
+    return result;
 }
 
 // TODO: Create a function to write README file
@@ -99,11 +84,7 @@ function writeToFile(data) {
 
 // TODO: Create a function to initialize app
 async function init() {
-    let licenseData = "";
-    const result = await questioner(questions);
-    if (result.license !== "None"){
-        licenseData= await questioner(licenseQuestions);
-    };
+    const result = await questioner();
     writeToFile(result);
 }
 
